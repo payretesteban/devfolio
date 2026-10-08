@@ -9,6 +9,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Fixed
+- Contact form (new HubSpot form editor / v4) themed through its `--hsf-*` variables: labels, inputs, intro text and button now meet WCAG AA contrast on the dark background; the empty form-title heading is hidden.
+- Code showcase: the scrollable code panel is keyboard-focusable, tabs follow the WAI-ARIA tabs pattern (arrow keys, `aria-controls`/`aria-labelledby`).
+
 ## [1.2.0] - 2026-10-08
 
 ### Added

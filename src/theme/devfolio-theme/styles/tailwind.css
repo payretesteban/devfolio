@@ -55,3 +55,57 @@
 .df-hs-form .hs-button { @apply df-btn df-btn-primary w-full justify-center; }
 .df-hs-form .hs-error-msgs { @apply m-0 mt-1 list-none p-0 text-xs text-[#ff6b81]; }
 .df-hs-form .submitted-message { @apply font-mono text-success; }
+
+/* HubSpot forms from the new form editor (v4, .hsfc-*) are themed through
+   their --hsf-* custom properties. Without this they render dark-gray text on
+   the dark background and fail WCAG contrast. */
+.df-hs-form .form-title { display: none; } /* empty <h3> HubSpot renders when the form has no title */
+.df-hs-form .hsfc-Renderer {
+  --hsf-global__font-family: Inter, system-ui, sans-serif;
+  --hsf-global__color: rgb(var(--df-text));
+  --hsf-global__error-color: #ff8a9b;
+  --hsf-heading__color: rgb(var(--df-text));
+  --hsf-richtext__font-family: Inter, system-ui, sans-serif;
+  --hsf-richtext__color: rgb(var(--df-muted));
+  --hsf-field-label__font-family: Inter, system-ui, sans-serif;
+  --hsf-field-label__color: rgb(var(--df-text));
+  --hsf-field-label-requiredindicator__color: #ff8a9b;
+  --hsf-field-description__color: rgb(var(--df-muted));
+  --hsf-field-footer__color: rgb(var(--df-muted));
+  --hsf-field-input__color: rgb(var(--df-text));
+  --hsf-field-input__background-color: rgb(255 255 255 / 0.04);
+  --hsf-field-input__border-color: rgb(255 255 255 / 0.22);
+  --hsf-field-input__border-radius: 10px;
+  --hsf-field-input__placeholder-color: rgb(var(--df-muted));
+  --hsf-field-textarea__color: rgb(var(--df-text));
+  --hsf-field-textarea__background-color: rgb(255 255 255 / 0.04);
+  --hsf-field-textarea__border-color: rgb(255 255 255 / 0.22);
+  --hsf-field-textarea__border-radius: 10px;
+  --hsf-field-textarea__placeholder-color: rgb(var(--df-muted));
+  --hsf-field-checkbox__color: rgb(var(--df-accent));
+  --hsf-field-radio__color: rgb(var(--df-accent));
+  --hsf-erroralert__color: #ff8a9b;
+  --hsf-infoalert__color: rgb(var(--df-muted));
+  --hsf-background__background-color: transparent;
+  --hsf-background__padding: 0;
+  /* solid accent (not the gradient): white text keeps 4.5:1 across the whole button */
+  --hsf-button__font-family: Inter, system-ui, sans-serif;
+  --hsf-button__font-weight: 600;
+  --hsf-button__color: #fff;
+  --hsf-button__background-color: rgb(var(--df-accent));
+  --hsf-button__background-image: none;
+  --hsf-button__border-radius: 10px;
+  --hsf-button--hover__color: #fff;
+  --hsf-button--hover__background-color: rgb(var(--df-accent));
+  --hsf-button--focus__color: #fff;
+  --hsf-button--focus__background-color: rgb(var(--df-accent));
+}
+.df-hs-form .hsfc-DropdownOptions {
+  background: rgb(var(--df-surface));
+  color: rgb(var(--df-text));
+  border-color: rgb(255 255 255 / 0.16);
+}
+.df-hs-form .hsfc-DropdownOptions__List__ListItem:hover,
+.df-hs-form .hsfc-DropdownOptions__List__ListItem--selected {
+  background: rgb(var(--df-accent) / 0.2);
+}
