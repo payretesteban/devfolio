@@ -4,13 +4,79 @@
     "name": "colors",
     "label": "Colors",
     "children": [
-      { "type": "color", "name": "accent", "label": "Primary accent", "default": { "color": "#7C5CFF", "opacity": 100 } },
-      { "type": "color", "name": "accent_alt", "label": "Secondary accent", "default": { "color": "#22D3EE", "opacity": 100 } },
-      { "type": "color", "name": "success", "label": "Terminal green", "default": { "color": "#3DDC97", "opacity": 100 } },
-      { "type": "color", "name": "background", "label": "Background", "default": { "color": "#07080C", "opacity": 100 } },
-      { "type": "color", "name": "surface", "label": "Surface (cards)", "default": { "color": "#0F1118", "opacity": 100 } },
-      { "type": "color", "name": "text", "label": "Text", "default": { "color": "#E7E9F0", "opacity": 100 } },
-      { "type": "color", "name": "muted", "label": "Muted text", "default": { "color": "#8A90A2", "opacity": 100 } }
+      {
+        "type": "color",
+        "name": "accent",
+        "label": "Primary accent",
+        "default": {
+          "color": "#7C5CFF",
+          "opacity": 100
+        }
+      },
+      {
+        "type": "color",
+        "name": "accent_text",
+        "label": "Primary accent for text",
+        "help_text": "Used for small accent-colored text. Keep a contrast ratio of at least 4.5:1 against the background (WCAG AA).",
+        "default": {
+          "color": "#A48BFF",
+          "opacity": 100
+        }
+      },
+      {
+        "type": "color",
+        "name": "accent_alt",
+        "label": "Secondary accent",
+        "default": {
+          "color": "#22D3EE",
+          "opacity": 100
+        }
+      },
+      {
+        "type": "color",
+        "name": "success",
+        "label": "Terminal green",
+        "default": {
+          "color": "#3DDC97",
+          "opacity": 100
+        }
+      },
+      {
+        "type": "color",
+        "name": "background",
+        "label": "Background",
+        "default": {
+          "color": "#07080C",
+          "opacity": 100
+        }
+      },
+      {
+        "type": "color",
+        "name": "surface",
+        "label": "Surface (cards)",
+        "default": {
+          "color": "#0F1118",
+          "opacity": 100
+        }
+      },
+      {
+        "type": "color",
+        "name": "text",
+        "label": "Text",
+        "default": {
+          "color": "#E7E9F0",
+          "opacity": 100
+        }
+      },
+      {
+        "type": "color",
+        "name": "muted",
+        "label": "Muted text",
+        "default": {
+          "color": "#8A90A2",
+          "opacity": 100
+        }
+      }
     ]
   },
   {
@@ -18,9 +84,31 @@
     "name": "effects",
     "label": "Effects",
     "children": [
-      { "type": "boolean", "name": "grid_background", "label": "Show grid background", "default": true, "display": "toggle" },
-      { "type": "boolean", "name": "glow", "label": "Show gradient glow", "default": true, "display": "toggle" },
-      { "type": "number", "name": "radius", "label": "Corner radius (px)", "default": 14, "min": 0, "max": 32, "step": 1, "suffix": "px", "display": "slider" }
+      {
+        "type": "boolean",
+        "name": "grid_background",
+        "label": "Show grid background",
+        "default": true,
+        "display": "toggle"
+      },
+      {
+        "type": "boolean",
+        "name": "glow",
+        "label": "Show gradient glow",
+        "default": true,
+        "display": "toggle"
+      },
+      {
+        "type": "number",
+        "name": "radius",
+        "label": "Corner radius (px)",
+        "default": 14,
+        "min": 0,
+        "max": 32,
+        "step": 1,
+        "suffix": "px",
+        "display": "slider"
+      }
     ]
   }
 ]

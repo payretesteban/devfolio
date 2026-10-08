@@ -18,6 +18,7 @@ export default {
     extend: {
       colors: {
         accent: themeColor('accent'),
+        'accent-text': themeColor('accent-text'), // AA-contrast variant for small text
         'accent-alt': themeColor('accent-alt'),
         success: themeColor('success'),
         bg: themeColor('bg'),
@@ -39,6 +40,8 @@ export default {
       },
       backgroundImage: {
         brand: 'linear-gradient(120deg, rgb(var(--df-accent)), rgb(var(--df-accent-alt)))',
+        // lighter start so gradient text keeps AA contrast on the dark background
+        'brand-text': 'linear-gradient(120deg, rgb(var(--df-accent-text)), rgb(var(--df-accent-alt)))',
       },
       keyframes: {
         marquee: { from: { transform: 'translateX(0)' }, to: { transform: 'translateX(-50%)' } },

@@ -18,7 +18,7 @@
   .df-eyebrow::before { content: '// '; @apply text-muted; }
   .df-h2 { @apply mb-4 text-[clamp(28px,4vw,44px)] font-bold leading-[1.1] tracking-tight; }
   .df-lead { @apply m-0 max-w-2xl text-lg text-muted; }
-  .df-gradient-text { @apply bg-brand bg-clip-text text-transparent; }
+  .df-gradient-text { @apply bg-brand-text bg-clip-text text-transparent; }
   .df-card {
     @apply rounded-theme border border-line bg-surface transition duration-200 hover:border-line-strong;
   }
@@ -49,7 +49,7 @@
 .df-hs-form .hs-form-field { @apply mb-5; }
 .df-hs-form label { @apply mb-1.5 block font-mono text-xs uppercase tracking-wider text-muted; }
 .df-hs-form .hs-input:not([type='checkbox']):not([type='radio']) {
-  @apply w-full rounded-lg border border-line-strong bg-white/[0.03] px-4 py-3 text-[15px] text-ink outline-none transition placeholder:text-muted/60 focus:border-accent focus:ring-2 focus:ring-accent/30;
+  @apply w-full rounded-lg border border-line-strong bg-white/[0.03] px-4 py-3 text-[15px] text-ink outline-none transition placeholder:text-muted focus:border-accent focus:ring-2 focus:ring-accent/30;
 }
 .df-hs-form textarea.hs-input { @apply min-h-[120px]; }
 .df-hs-form .hs-button { @apply df-btn df-btn-primary w-full justify-center; }

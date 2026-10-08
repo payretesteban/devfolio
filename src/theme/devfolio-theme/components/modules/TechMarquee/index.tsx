@@ -22,7 +22,7 @@ export function Component({ fieldValues }) {
               aria-hidden={i >= names.length || undefined}
               className="whitespace-nowrap rounded-lg border border-line bg-surface px-4 py-2 font-mono text-sm text-ink/90"
             >
-              <span className="mr-2 text-accent">◆</span>
+              <span className="mr-2 text-accent-text">◆</span>
               {name}
             </li>
           ))}

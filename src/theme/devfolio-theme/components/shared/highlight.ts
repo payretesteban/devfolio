@@ -35,12 +35,12 @@ export function highlight(code: string, language: string): Token[] {
     last = offset + match.length;
 
     if (comment) {
-      push(match, 'italic text-muted/70');
+      push(match, 'italic text-muted');
     } else if (str) push(match, 'text-success');
     else if (punct) push(match, 'text-accent-alt');
     else if (num) push(match, 'text-[#f9a86b]');
     else if (fn) push(match, 'text-[#82aaff]');
-    else if (word && KEYWORDS.has(word)) push(match, 'text-accent');
+    else if (word && KEYWORDS.has(word)) push(match, 'text-accent-text');
     else push(match);
     return match;
   });

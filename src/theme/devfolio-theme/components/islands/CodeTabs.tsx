@@ -33,7 +33,7 @@ export default function CodeTabs({ tabs }: { tabs: Tab[] }) {
         <CopyButton value={tab.code} />
       </div>
       <div className="flex overflow-x-auto font-mono text-[13px] leading-6" role="tabpanel">
-        <pre aria-hidden="true" className="m-0 select-none border-r border-line px-4 py-5 text-right text-muted/50">
+        <pre aria-hidden="true" className="m-0 select-none border-r border-line px-4 py-5 text-right text-muted">
           {Array.from({ length: lineCount }, (_, i) => i + 1).join('\n')}
         </pre>
         <pre className="m-0 flex-1 px-5 py-5 text-ink/90">

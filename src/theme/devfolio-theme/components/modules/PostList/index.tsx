@@ -32,7 +32,7 @@ export function Component({ fieldValues }) {
                   <span className="flex flex-wrap items-center gap-2">
                     <span className="text-lg font-semibold tracking-tight transition group-hover:text-accent-alt">{p.title}</span>
                     {p.featured && (
-                      <span className="rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[11px] text-accent">★ featured</span>
+                      <span className="rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[11px] text-accent-text">★ featured</span>
                     )}
                   </span>
                   {p.excerpt && <span className="mt-1 block text-[15px] text-muted">{p.excerpt}</span>}

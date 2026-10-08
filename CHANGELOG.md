@@ -9,6 +9,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Added
+- Theme setting **Primary accent for text** (`accent_text`, default `#A48BFF`), exposed to Tailwind as `text-accent-text`, for small accent-colored text.
+
+### Fixed
+- Color contrast (WCAG AA 4.5:1) for syntax-highlighted keywords and comments, code line numbers, the "featured" post badge, marquee markers and gradient text. Verified with axe-core: 0 contrast violations.
+
 ## [1.0.0] - 2026-10-07
 
 ### Added
