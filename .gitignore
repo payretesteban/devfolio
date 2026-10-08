@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+hubspot.config.yml
+.env
+npm-debug.log*
+*.log
+tmp-fields.json
+tmp-meta.json
+*.tgz

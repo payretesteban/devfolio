@@ -1,0 +1,8 @@
+{
+  "label": "Devfolio",
+  "preview_path": "./templates/home.hubl.html",
+  "author": {
+    "name": "Esteban Payret"
+  },
+  "version": "1.0.0"
+}

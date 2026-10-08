@@ -1,0 +1,57 @@
+<!--
+  templateType: blog_listing
+  isAvailableForNewContent: true
+  label: Devfolio - Blog listing
+-->
+{% extends "./layouts/base.hubl.html" %}
+
+{% block body %}
+<section class="df-section pt-36">
+  <div class="df-container">
+    <p class="df-eyebrow">dev log</p>
+    <h1 class="df-h2">
+      {% if blog_author %}Posts by {{ blog_author.display_name }}
+      {% elif tag %}Tagged #{{ page_meta.html_title|split(' | ')|last }}
+      {% else %}{{ group.public_title or group.name }}{% endif %}
+    </h1>
+    {% if group.description %}<p class="df-lead">{{ group.description }}</p>{% endif %}
+
+    <div class="mt-12 grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(320px,1fr))]">
+      {% for content in contents %}
+        <article class="df-card group flex flex-col overflow-hidden hover:-translate-y-1">
+          {% if content.featured_image %}
+            <a href="{{ content.absolute_url }}" class="block overflow-hidden">
+              <img src="{{ content.featured_image }}" alt="{{ content.featured_image_alt_text }}" loading="lazy"
+                   class="aspect-video w-full object-cover transition duration-500 group-hover:scale-105" />
+            </a>
+          {% endif %}
+          <div class="flex flex-1 flex-col p-6">
+            <div class="flex flex-wrap gap-2 font-mono text-xs text-muted">
+              <time datetime="{{ content.publish_date }}">{{ content.publish_date|format_date('medium') }}</time>
+              <span>·</span>
+              <span>{{ content.post_body|wordcount|divide(250)|round(0, 'ceil')|int }} min read</span>
+            </div>
+            <h2 class="my-2 text-xl font-semibold leading-snug">
+              <a href="{{ content.absolute_url }}" class="no-underline hover:text-accent-alt">{{ content.name }}</a>
+            </h2>
+            <p class="mb-4 text-[15px] text-muted">{{ content.post_summary|striptags|truncate(140) }}</p>
+            {% if content.tag_list %}
+              <ul class="mt-auto flex list-none flex-wrap gap-2 p-0">
+                {% for t in content.tag_list %}<li><a class="df-chip no-underline" href="{{ blog_tag_url(group.id, t.slug) }}">#{{ t.name }}</a></li>{% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if last_page_num > 1 %}
+      <nav class="mt-12 flex items-center justify-center gap-4 font-mono text-sm text-muted" aria-label="Blog pagination">
+        {% if current_page_num > 1 %}<a class="df-btn" href="{{ blog_page_link(current_page_num - 1) }}">← newer</a>{% endif %}
+        <span>page {{ current_page_num }} / {{ last_page_num }}</span>
+        {% if current_page_num < last_page_num %}<a class="df-btn" href="{{ blog_page_link(current_page_num + 1) }}">older →</a>{% endif %}
+      </nav>
+    {% endif %}
+  </div>
+</section>
+{% endblock body %}

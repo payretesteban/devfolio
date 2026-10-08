@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { @apply scroll-smooth; }
+  body { @apply bg-bg font-sans text-ink antialiased; }
+  ::selection { @apply bg-accent text-white; }
+  :focus-visible { @apply rounded outline outline-2 outline-offset-2 outline-accent-alt; }
+}
+
+@layer components {
+  .df-container { @apply mx-auto w-full max-w-site px-6; }
+  .df-section { @apply relative py-24; }
+  .df-eyebrow {
+    @apply mb-3 font-mono text-[13px] uppercase tracking-[0.08em] text-accent-alt;
+  }
+  .df-eyebrow::before { content: '// '; @apply text-muted; }
+  .df-h2 { @apply mb-4 text-[clamp(28px,4vw,44px)] font-bold leading-[1.1] tracking-tight; }
+  .df-lead { @apply m-0 max-w-2xl text-lg text-muted; }
+  .df-gradient-text { @apply bg-brand bg-clip-text text-transparent; }
+  .df-card {
+    @apply rounded-theme border border-line bg-surface transition duration-200 hover:border-line-strong;
+  }
+  .df-btn {
+    @apply inline-flex cursor-pointer items-center gap-2 rounded-theme border border-line-strong bg-white/[0.03] px-5 py-3 text-[15px] font-semibold text-ink no-underline transition hover:-translate-y-px hover:bg-white/[0.07];
+  }
+  .df-btn-primary {
+    @apply border-transparent bg-brand text-white shadow-[0_8px_30px_-8px_rgb(var(--df-accent)/0.7)] hover:bg-brand hover:shadow-[0_10px_40px_-6px_rgb(var(--df-accent)/0.85)];
+  }
+  .df-chip {
+    @apply inline-flex items-center rounded-full border border-line-strong px-2.5 py-1 font-mono text-xs text-accent-alt;
+  }
+}
+
+/* HubSpot drag-and-drop wrappers: let modules control their own spacing */
+.dnd-section { padding: 0 !important; }
+.dnd-section > .row-fluid { max-width: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Native HubSpot forms (v2/v3 embeds) restyled to match the theme */
+.df-hs-form .hs-form-field { @apply mb-5; }
+.df-hs-form label { @apply mb-1.5 block font-mono text-xs uppercase tracking-wider text-muted; }
+.df-hs-form .hs-input:not([type='checkbox']):not([type='radio']) {
+  @apply w-full rounded-lg border border-line-strong bg-white/[0.03] px-4 py-3 text-[15px] text-ink outline-none transition placeholder:text-muted/60 focus:border-accent focus:ring-2 focus:ring-accent/30;
+}
+.df-hs-form textarea.hs-input { @apply min-h-[120px]; }
+.df-hs-form .hs-button { @apply df-btn df-btn-primary w-full justify-center; }
+.df-hs-form .hs-error-msgs { @apply m-0 mt-1 list-none p-0 text-xs text-[#ff6b81]; }
+.df-hs-form .submitted-message { @apply font-mono text-success; }

@@ -1,0 +1,35 @@
+<!--
+  templateType: blog_post
+  isAvailableForNewContent: true
+  label: Devfolio - Blog post
+-->
+{% extends "./layouts/base.hubl.html" %}
+
+{% block body %}
+<article class="df-section pt-36">
+  <div class="df-container max-w-3xl">
+    <a class="font-mono text-sm text-accent-alt no-underline hover:underline" href="{{ group.absolute_url }}">← cd ..</a>
+    <h1 class="mb-4 mt-5 text-[clamp(32px,5vw,52px)] font-bold leading-[1.08] tracking-tight">{{ content.name }}</h1>
+    <div class="flex flex-wrap gap-2 font-mono text-xs text-muted">
+      {% if content.blog_post_author %}<span>{{ content.blog_post_author.display_name }}</span><span>·</span>{% endif %}
+      <time datetime="{{ content.publish_date }}">{{ content.publish_date|format_date('long') }}</time>
+      <span>·</span>
+      <span>{{ content.post_body|wordcount|divide(250)|round(0, 'ceil')|int }} min read</span>
+    </div>
+    {% if content.featured_image %}
+      <img class="my-8 rounded-theme border border-line" src="{{ content.featured_image }}" alt="{{ content.featured_image_alt_text }}" />
+    {% endif %}
+
+    {# Tailwind Typography styles raw rich text from the blog editor #}
+    <div class="prose prose-invert prose-lg mt-8 max-w-none prose-headings:tracking-tight prose-a:text-accent-alt prose-code:rounded prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:border-line prose-pre:bg-[#0b0d13] prose-blockquote:border-accent">
+      {{ content.post_body }}
+    </div>
+
+    {% if content.tag_list %}
+      <ul class="mt-10 flex list-none flex-wrap gap-2 p-0">
+        {% for t in content.tag_list %}<li><a class="df-chip no-underline" href="{{ blog_tag_url(group.id, t.slug) }}">#{{ t.name }}</a></li>{% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</article>
+{% endblock body %}

@@ -1,0 +1,8 @@
+{
+  "uid": "devfolio_theme",
+  "type": "theme",
+  "config": {
+    "themePath": "devfolio-theme",
+    "secretNames": []
+  }
+}

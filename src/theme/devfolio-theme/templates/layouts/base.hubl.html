@@ -1,0 +1,74 @@
+<!--
+  templateType: none
+-->
+{%- macro rgb(field) -%}{{ field.color|convert_rgb|replace(',', ' ') }}{%- endmacro -%}
+<!DOCTYPE html>
+<html lang="{{ html_lang }}" {{ html_lang_dir }} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page_meta.html_title or pageTitle }}</title>
+    {% if brand_settings.primaryFavicon.src %}
+      <link rel="shortcut icon" href="{{ brand_settings.primaryFavicon.src }}" />
+    {% endif %}
+    <meta name="description" content="{{ page_meta.meta_description }}" />
+    <meta name="theme-color" content="{{ theme.colors.background.color }}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    {#
+      Theme fields -> CSS variables (space-separated RGB channels) -> Tailwind colors.
+      See tailwind.config.js: bg-accent, text-muted, border-line… all read these,
+      so changing a color in the theme editor re-skins every utility class.
+    #}
+    <style>
+      :root {
+        --df-accent: {{ rgb(theme.colors.accent) }};
+        --df-accent-alt: {{ rgb(theme.colors.accent_alt) }};
+        --df-success: {{ rgb(theme.colors.success) }};
+        --df-bg: {{ rgb(theme.colors.background) }};
+        --df-surface: {{ rgb(theme.colors.surface) }};
+        --df-text: {{ rgb(theme.colors.text) }};
+        --df-muted: {{ rgb(theme.colors.muted) }};
+        --df-radius: {{ theme.effects.radius }}px;
+        color-scheme: dark;
+      }
+      body { background: rgb(var(--df-bg)); color: rgb(var(--df-text)); margin: 0; }
+    </style>
+    {{ standard_header_includes }}
+  </head>
+  <body class="overflow-x-hidden">
+    {% if theme.effects.grid_background %}
+      <div
+        aria-hidden="true"
+        class="pointer-events-none fixed inset-0 -z-20 bg-[linear-gradient(rgb(255_255_255/0.035)_1px,transparent_1px),linear-gradient(90deg,rgb(255_255_255/0.035)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_40%,transparent_100%)]"
+      ></div>
+    {% endif %}
+    {% if theme.effects.glow %}
+      <div
+        aria-hidden="true"
+        class="pointer-events-none fixed -top-64 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(var(--df-accent)/0.35),transparent),radial-gradient(closest-side_at_70%_60%,rgb(var(--df-accent-alt)/0.22),transparent)] blur-[40px]"
+      ></div>
+    {% endif %}
+
+    <div class="body-wrapper {{ builtin_body_classes }}">
+      {% block header %}
+        {% global_partial path="../partials/header.hubl.html" %}
+      {% endblock header %}
+
+      <main id="main-content">
+        {% block body %}{% endblock body %}
+      </main>
+
+      {% block footer %}
+        {% global_partial path="../partials/footer.hubl.html" %}
+      {% endblock footer %}
+    </div>
+    {{ standard_footer_includes }}
+  </body>
+</html>

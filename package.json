@@ -1,0 +1,29 @@
+{
+  "name": "devfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Devfolio: a modern developer-portfolio theme for HubSpot CMS, built with CMS React + HubL",
+  "scripts": {
+    "start": "cd src/theme/devfolio-theme && npm start",
+    "postinstall": "cd src/theme/devfolio-theme && npm install",
+    "typecheck": "cd src/theme/devfolio-theme && npx tsc --noEmit",
+    "prettier": "prettier . --check",
+    "deploy": "hs project upload",
+    "open": "hs project open",
+    "version:sync": "node scripts/sync-version.mjs",
+    "version:check": "node scripts/sync-version.mjs --check",
+    "version": "node scripts/sync-version.mjs && git add src/theme/devfolio-theme/theme.json src/theme/devfolio-theme/package.json src/theme/devfolio-theme/components/shared/version.ts CHANGELOG.md",
+    "predeploy": "npm run version:check",
+    "release:patch": "npm version patch -m \"chore(release): v%s\" && npm run deploy",
+    "release:minor": "npm version minor -m \"chore(release): v%s\" && npm run deploy",
+    "release:major": "npm version major -m \"chore(release): v%s\" && npm run deploy"
+  },
+  "devDependencies": {
+    "@hubspot/prettier-plugin-hubl": "latest",
+    "prettier": "^2.7.1",
+    "@hubspot/cli": "latest"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
