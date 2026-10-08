@@ -9,6 +9,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-08
+
 ### Added
 - **Booking modal**: "Book a Free Consultation" (hero) and "Book a free 30-min call" (contact) open the calendar in a modal instead of leaving the page. Cal.com links use Cal's official embed, loaded only on first click and themed with the accent color; HubSpot Meetings and Calendly links open in the theme's own accessible `<dialog>`. Toggle per button with **Open in a modal**. Without JavaScript the buttons still work as normal links.
 - Releases now move the "Unreleased" notes in this file into a dated version section automatically.
