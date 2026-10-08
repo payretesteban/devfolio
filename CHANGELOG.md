@@ -10,6 +10,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ## [Unreleased]
 
 ### Added
+- **Booking modal**: "Book a Free Consultation" (hero) and "Book a free 30-min call" (contact) open the calendar in a modal instead of leaving the page. Cal.com links use Cal's official embed, loaded only on first click and themed with the accent color; HubSpot Meetings and Calendly links open in the theme's own accessible `<dialog>`. Toggle per button with **Open in a modal**. Without JavaScript the buttons still work as normal links.
+- Releases now move the "Unreleased" notes in this file into a dated version section automatically.
+
+## [1.1.0] - 2026-10-08
+
+### Added
 - Theme setting **Primary accent for text** (`accent_text`, default `#A48BFF`), exposed to Tailwind as `text-accent-text`, for small accent-colored text.
 
 ### Fixed

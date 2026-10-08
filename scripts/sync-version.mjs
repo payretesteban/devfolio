@@ -8,6 +8,9 @@
  *   - src/theme/devfolio-theme/package.json      → keeps the JS package in step
  *   - src/theme/devfolio-theme/components/shared/version.ts → rendered in the footer
  *
+ * When run from `npm version` it also moves the "## [Unreleased]" notes in
+ * CHANGELOG.md into a new "## [x.y.z] - YYYY-MM-DD" section.
+ *
  * Usage: node scripts/sync-version.mjs [--check]
  *   --check  exit 1 if any file is out of sync (useful in CI / pre-deploy)
  */
@@ -70,4 +73,27 @@ if (checkOnly && outOfSync) {
   console.error(`\n✖ ${outOfSync} file(s) not at v${version}. Run: npm run version:sync`);
   process.exit(1);
 }
+if (!checkOnly && process.env.npm_lifecycle_event === 'version') releaseChangelog();
+
 console.log(`\nDevfolio v${version}`);
+
+/** Turn the Unreleased notes into a dated section for this version. */
+function releaseChangelog() {
+  const file = path.join(root, 'CHANGELOG.md');
+  let text;
+  try {
+    text = readFileSync(file, 'utf8');
+  } catch {
+    return;
+  }
+  if (text.includes(`## [${version}]`)) return; // already released
+  const match = text.match(/## \[Unreleased\]\n([\s\S]*?)(?=\n## \[|$)/);
+  if (!match || !match[1].trim()) {
+    console.warn('  ! CHANGELOG.md has no "Unreleased" notes for this release');
+    return;
+  }
+  const date = new Date().toISOString().slice(0, 10);
+  const next = text.replace(match[0], `## [Unreleased]\n\n## [${version}] - ${date}\n${match[1].replace(/\s+$/, '')}\n`);
+  writeFileSync(file, next);
+  console.log(`  ↻ CHANGELOG.md → [${version}] - ${date}`);
+}

@@ -9,6 +9,7 @@ import {
 } from '@hubspot/cms-components/fields';
 import { linkProps } from '../../shared/ui.tsx';
 import TerminalTyper from '../../islands/TerminalTyper.tsx?island';
+import BookingButton from '../../islands/BookingButton.tsx?island';
 
 export function Component({ fieldValues }) {
   const { status, show_status, headline, highlight, subheadline, primary, secondary, terminal } = fieldValues;
@@ -36,11 +37,23 @@ export function Component({ fieldValues }) {
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted md:text-xl">{subheadline}</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            {primary?.text && (
-              <a className="df-btn df-btn-primary" {...linkProps(primary.link)}>
-                {primary.text} <span aria-hidden="true">→</span>
-              </a>
-            )}
+            {primary?.text &&
+              (primary.open_in_modal ? (
+                <Island
+                  module={BookingButton}
+                  hydrateOn="idle"
+                  wrapperTag="span"
+                  wrapperClassName="contents"
+                  href={linkProps(primary.link).href}
+                  label={primary.text}
+                  title={primary.text}
+                  className="df-btn df-btn-primary"
+                />
+              ) : (
+                <a className="df-btn df-btn-primary" {...linkProps(primary.link)}>
+                  {primary.text} <span aria-hidden="true">→</span>
+                </a>
+              ))}
             {secondary?.text && (
               <a className="df-btn" {...linkProps(secondary.link)}>
                 {secondary.text}
@@ -85,6 +98,13 @@ export const fields = (
     <FieldGroup name="primary" label="Primary button">
       <TextField name="text" label="Label" default="Book a Free Consultation" />
       <LinkField name="link" label="Link" default={link('https://cal.com/estebanpayret/30min', true)} />
+      <BooleanField
+        name="open_in_modal"
+        label="Open in a modal"
+        helpText="For booking links (Cal.com, HubSpot Meetings, Calendly): shows the calendar in a popup instead of leaving the page."
+        default={true}
+        display="toggle"
+      />
     </FieldGroup>
     <FieldGroup name="secondary" label="Secondary button">
       <TextField name="text" label="Label" default="Explore My Services" />

@@ -1,8 +1,9 @@
 import { Island, Form } from '@hubspot/cms-components';
-import { ModuleFields, TextField, FormField, FieldGroup, LinkField } from '@hubspot/cms-components/fields';
+import { ModuleFields, TextField, FormField, FieldGroup, LinkField, BooleanField } from '@hubspot/cms-components/fields';
 import { Section, linkProps } from '../../shared/ui.tsx';
 import { HeadingFields } from '../../shared/fields.tsx';
 import CopyButton from '../../islands/CopyButton.tsx?island';
+import BookingButton from '../../islands/BookingButton.tsx?island';
 
 /**
  * Contact block backed by a native HubSpot form, so submissions land straight
@@ -33,11 +34,22 @@ export function Component({ fieldValues }) {
                 <Island module={CopyButton} hydrateOn="idle" value={email} label="Copy" wrapperClassName="ml-auto" />
               </div>
             )}
-            {booking?.text && (
-              <a className="df-btn df-btn-primary mt-6" {...linkProps(booking.link)}>
-                {booking.text} <span aria-hidden="true">→</span>
-              </a>
-            )}
+            {booking?.text &&
+              (booking.open_in_modal ? (
+                <Island
+                  module={BookingButton}
+                  hydrateOn="idle"
+                  wrapperClassName="mt-6"
+                  href={linkProps(booking.link).href}
+                  label={booking.text}
+                  title={booking.text}
+                  className="df-btn df-btn-primary"
+                />
+              ) : (
+                <a className="df-btn df-btn-primary mt-6" {...linkProps(booking.link)}>
+                  {booking.text} <span aria-hidden="true">→</span>
+                </a>
+              ))}
             {response_time && (
               <p className="mt-4 font-mono text-xs text-muted">
                 <span className="text-success">●</span> {response_time}
@@ -76,6 +88,13 @@ export const fields = (
         name="link"
         label="Link"
         default={{ url: { type: 'EXTERNAL', href: 'https://cal.com/estebanpayret/30min', content_id: null }, open_in_new_tab: true }}
+      />
+      <BooleanField
+        name="open_in_modal"
+        label="Open in a modal"
+        helpText="For booking links (Cal.com, HubSpot Meetings, Calendly): shows the calendar in a popup instead of leaving the page."
+        default={true}
+        display="toggle"
       />
     </FieldGroup>
     <FormField
