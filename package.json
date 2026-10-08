@@ -1,6 +1,6 @@
 {
   "name": "devfolio",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Devfolio: a modern developer-portfolio theme for HubSpot CMS, built with CMS React + HubL",
   "scripts": {
