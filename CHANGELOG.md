@@ -9,6 +9,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [1.2.2] - 2026-10-08
+
 ### Added
 - Built-in `<EP/>` favicon (`assets/favicon.svg`, inlined as an SVG data URI). The brand kit favicon (Settings → Branding) still takes precedence. Fixes the `/favicon.ico` 404.
 
